@@ -1,0 +1,7 @@
+.vidcut-overlay { position: fixed; left: 0; right: 0; bottom: 0; z-index: 2147483647; display: flex; justify-content: center; pointer-events: none; }
+.vidcut-overlay .vc-panel { pointer-events: auto; margin: 12px; background: rgba(0,0,0,0.85); color: #fff; padding: 10px; border-radius: 8px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+.vidcut-overlay .vc-row { display: flex; gap: 8px; align-items: center; margin-top: 6px; }
+.vidcut-overlay .vc-info { font-size: 12px; opacity: 0.9; }
+.vidcut-overlay button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 12px; }
+.vidcut-overlay button[disabled] { background: #4b5563; cursor: not-allowed; }
+.vidcut-overlay .vc-secondary { background: #6b7280; }

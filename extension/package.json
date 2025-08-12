@@ -1,0 +1,27 @@
+{
+  "name": "vidcut",
+  "version": "1.0.0",
+  "description": "Browser extension for creating and downloading video snippets",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch",
+    "dev": "webpack --config webpack.config.js --mode=development --watch",
+    "prod": "webpack --config webpack.config.js --mode=production"
+  },
+  "keywords": [
+    "video",
+    "snippet",
+    "chrome-extension"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-loader": "^9.0.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0"
+  }
+}

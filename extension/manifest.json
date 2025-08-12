@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "VidCut",
+  "version": "1.0.0",
+  "description": "Create and download video snippets from any webpage",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads",
+    "scripting",
+    "tabCapture",
+    "notifications",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
