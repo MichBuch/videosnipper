@@ -2,28 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusEl = document.getElementById('video-status') as HTMLDivElement;
   const btnOpen = document.getElementById('open-controls') as HTMLButtonElement;
 
-  function injectIfNeeded(callback: () => void) {
+  function ensureContentAvailable(callback: () => void) {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0]?.id;
       if (tabId == null) return callback();
-      chrome.scripting.executeScript(
-        {
-          target: { tabId },
-          func: () => {
-            // Ensure we only inject once per page load
-            if ((window as any).__VIDCUT_INJECTED__) return false;
-            (window as any).__VIDCUT_INJECTED__ = true;
-            return true;
-          }
-        },
-        (results) => {
-          const shouldInject = results && results[0] && results[0].result === true;
-          if (!shouldInject) return callback();
-          chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }, () => {
-            chrome.scripting.insertCSS({ target: { tabId }, files: ['content.css'] }, () => callback());
-          });
+
+      // First try to reach existing content script
+      chrome.tabs.sendMessage(tabId, { type: 'GET_VIDEO_STATUS' }, (resp) => {
+        if (!chrome.runtime.lastError && resp) {
+          return callback();
         }
-      );
+        // Not present: inject once
+        chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] }, () => {
+          chrome.scripting.insertCSS({ target: { tabId }, files: ['content.css'] }, () => callback());
+        });
+      });
     });
   }
 
@@ -40,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  injectIfNeeded(checkOnce);
+  ensureContentAvailable(checkOnce);
 
   btnOpen.addEventListener('click', () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

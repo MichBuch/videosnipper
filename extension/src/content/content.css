@@ -5,3 +5,10 @@
 .vidcut-overlay button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 12px; }
 .vidcut-overlay button[disabled] { background: #4b5563; cursor: not-allowed; }
 .vidcut-overlay .vc-secondary { background: #6b7280; }
+
+.vidcut-overlay .vc-badge { background: #111827; color: #e5e7eb; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+.vidcut-overlay .vc-spacer { flex: 1; }
+.vidcut-overlay .vc-slider { width: 420px; }
+.vidcut-overlay .vc-progress { width: 100%; }
+.vidcut-overlay .vc-progress-track { position: relative; width: 100%; height: 6px; background: #1f2937; border-radius: 4px; overflow: hidden; }
+.vidcut-overlay .vc-progress-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: #10b981; }

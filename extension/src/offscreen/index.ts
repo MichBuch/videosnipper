@@ -8,8 +8,8 @@ async function record(durationMs: number) {
         {
           audio: true,
           video: true,
-          videoConstraints: { mandatory: { chromeMediaSource: 'tab', maxFrameRate: 30 } } as any,
-          audioConstraints: { mandatory: { chromeMediaSource: 'tab' } } as any
+          videoConstraints: { maxFrameRate: 30 } as any,
+          audioConstraints: true as any
         },
         (s) => resolve(s)
       );
